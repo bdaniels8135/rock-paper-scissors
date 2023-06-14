@@ -1,6 +1,4 @@
-const CHOICES = [ 'ROCK', 'PAPER', 'SCISSORS']
-
-
+const CHOICES = ['ROCK', 'PAPER', 'SCISSORS']
 
 
 function getComputerChoice() {
@@ -8,7 +6,6 @@ function getComputerChoice() {
 }
 
 function playRound(playerSelection, computerSelection) {
-    console.log(`You played ${playerSelection}. The computer played ${computerSelection}.`);
     if (playerSelection === computerSelection) {
         return 'It is a tie!';
     } else if (playerSelection ===  'ROCK'){
@@ -32,6 +29,36 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-const playerSelection =  'ROCK';
-const computerSelection = getComputerChoice();
-console.log(playRound(playerSelection,computerSelection));
+function game() {
+    let round = 0;
+    let playerScore = 0;
+    let computerScore = 0;
+    let playerSelection = null;
+    let computerSelection = null;
+    let message = null;
+    while (round < 5) {
+        playerSelection = prompt('Type your selection: ROCK, PAPER, or SCISSORS.').toUpperCase();
+        if (CHOICES.includes(playerSelection)) {
+            computerSelection = getComputerChoice();
+            message = playRound(playerSelection, computerSelection);
+            if (message.includes('win')) {
+                playerScore++;
+            } else if (message.includes('lose')) {
+                computerScore++;
+            }
+            round++;
+            console.log(`You played ${playerSelection}. The computer played ${computerSelection}.`);
+            console.log(message);
+            console.log(`Score: Player ${playerScore} Computer ${computerScore}`);
+        } else {
+            alert('Please enter a valid choice to continue playing.')
+        }
+    }
+    if (playerScore > computerScore) {
+        console.log('Congratulations! You beat the computer!')    
+    } else if (playerScore < computerScore) {
+        console.log('How disappointing! The computer beat you...')
+    } else {
+        console.log('Wow! It is a tie.')
+    }
+}
