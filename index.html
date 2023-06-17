@@ -16,13 +16,54 @@
     </header>
 
     <main class="container" id="game-container">
-        <div class="container" id="instructions-container"></div>
-        <div class="container" id="player-choices"></div>
-        <div class="container" id="game-flow-choices"></div>
-        <div class="container" id="round-choices"></div>
-        <div class="container" id="round-outcome-container"></div>
-        <div class="container" id="scoreboard-container"></div>
-        <div class="container" id="game-outcome-container"></div>
+        <div class="container" id="instructions-container">
+            <div class="text header" id="instructions-header">Instructions</div>
+            <div class="text" id="instructions">(Instructions on how to play.)</div>
+        </div>
+        
+        <div class="container" id="player-choices">
+            <button class="button" id="button-rock">(Rock)</button>
+            <button class="button" id="button-paper">(Paper)</button>
+            <button class="button" id="button-scissors">(Scissors)</button>
+        </div>
+        
+        <div class="container" id="game-flow-choices">
+            <button class="button" id="button-forfeit">Forfeit Game</button>
+        </div>
+        
+        <div class="container" id="round-choices">
+            <div class="container" id="player-choice">(Image of player choice)</div>
+            <div class="container" id="computer-choice">(Image of computer choice)</div>
+        </div>
+        
+        <div class="container" id="round-outcome-container">
+            <div class="container" id="round-outcome-win">You win!</div>
+            <div class="container" id="round-outcome-tie">It's a tie.</div>
+            <div class="container" id="round-outcome-lose">You lose...</div>
+        </div>
+
+        <div class="container" id="scoreboard-container">
+            <div class="container" id="round-info-container">
+                <div class="text" id="round-label">Round</div>
+                <div class="container" id="round-number-container">
+                    <div class="text" id="round-number">1</div>
+                </div>    
+            </div>
+            <div class="container" id="score-container">
+                <div class="text" id="player-score-label">Player</div>
+                <div class="container" id="player-score-container">
+                    <div class="text" id="player-score">0</div>
+                </div>
+                <div class="text" id="computer-score-label">Computer</div>
+                <div class="container" id="computer-score-container">
+                    <div class="text" id="computer-score">0</div>
+                </div>
+            </div>
+        </div>
+        <div class="container" id="game-outcome-container">
+            <div class="text" id="game-outcome-message">(Placeholder for outcome message)</div>
+            <button class="button" id="button-play-again">Play Again</button>
+        </div>
     </main>
     
     <footer class="footer"> Copyright &copy; bdaniels8135 </footer>
