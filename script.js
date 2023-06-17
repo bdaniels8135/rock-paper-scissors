@@ -1,4 +1,4 @@
-const MAX_ROUNDS = 5
+const MAX_ROUNDS = 5;
 
 const CHOICES = Object.freeze({
     ROCK: 'ROCK',
@@ -77,7 +77,7 @@ function updateScore (roundOutcome, playerScore, computerScore) {
     } else if (roundOutcome === ROUND_OUTCOMES.LOSE) {
         computerScore++;
     }
-    return [playerScore, computerScore]
+    return [playerScore, computerScore];
 }
 
 function printFinalMessage(playerScore, computerScore) {
@@ -100,12 +100,11 @@ function game() {
     let roundOutcome;
     for (let round = 1; round <= MAX_ROUNDS; round++) {
         playerChoice = getPlayerChoice();
-        if (!playerChoice) break;
+        if (!playerChoice) return;
         computerChoice = getComputerChoice();
         roundOutcome = getRoundOutcome(playerChoice, computerChoice);    
         [playerScore, computerScore] = updateScore(roundOutcome, playerScore, computerScore);
         printRoundMessage(playerChoice, computerChoice, roundOutcome, playerScore, computerScore, round);
     }
-    if (!playerChoice) return;
     printFinalMessage(playerScore, computerScore);
 }
