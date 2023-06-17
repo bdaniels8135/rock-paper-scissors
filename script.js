@@ -14,7 +14,7 @@ function getComputerChoice() {
     return CHOICES[Object.keys(CHOICES)[Math.floor(Math.random()*Object.keys(CHOICES).length)]];
 }
 
-function playRound(playerChoice, computerChoice) {
+function getRoundOutcome(playerChoice, computerChoice) {
     if (playerChoice === computerChoice) {
         return ROUND_OUTCOMES.TIE;
     } else if (playerChoice ===  CHOICES.ROCK){
@@ -99,7 +99,7 @@ function game() {
         playerChoice = getPlayerChoice();
         if (!playerChoice) break;
         computerChoice = getComputerChoice();
-        roundOutcome = playRound(playerChoice, computerChoice);    
+        roundOutcome = getRoundOutcome(playerChoice, computerChoice);    
         [playerScore, computerScore] = updateScore(roundOutcome, playerScore, computerScore);
         roundMessage = getRoundMessage(playerChoice, computerChoice, roundOutcome, playerScore, computerScore, round);
         console.log(roundMessage);
