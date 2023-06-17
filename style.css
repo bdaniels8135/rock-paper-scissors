@@ -4,6 +4,11 @@
     margin: 0;
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+}
+
 .container {
     display: flex;
 }
@@ -11,11 +16,12 @@
 .container.vertical {
     flex-direction: column;
 }
- .container.center {
+
+.container.center {
     justify-content: center;
     align-items: center;
     gap: 8px;
- }
+}
 
 .text {
     text-align: center;
@@ -23,16 +29,28 @@
 
 header {
     padding: 8px;
-    font-size: 28px;
+    font-size: 32px;
     font-weight: 800;
 }
 
 #instructions-container {
     padding: 8px;
+    font-size: 20px;
 }
 
 #instructions-header {
-    font-size: 20px;
+    font-size: 28px;
     font-weight: 500;
     text-decoration: underline;    
 }
+
+#player-choices {
+    padding: 8px;
+}
+
+#player-choices > .button {
+    font-size: 20px;
+    gap: 8px;
+}
+
+
