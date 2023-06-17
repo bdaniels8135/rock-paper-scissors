@@ -1,3 +1,5 @@
+const MAX_ROUNDS = 5
+
 const CHOICES = Object.freeze({
     ROCK: 'ROCK',
     PAPER: 'PAPER',
@@ -84,7 +86,7 @@ function getFinalMessage(playerScore, computerScore) {
     } else if (playerScore < computerScore) {
         return 'How disappointing! The computer beat you...';
     } else if (playerScore === computerScore) {
-        return 'Wow! It is a tie.';
+        return 'It is a tie. Lame...';
     }
 }
 
@@ -95,7 +97,7 @@ function game() {
     let computerChoice;
     let roundMessage;
     let roundOutcome;
-    for (let round = 1; round <= 5; round++) {
+    for (let round = 1; round <= MAX_ROUNDS; round++) {
         playerChoice = getPlayerChoice();
         if (!playerChoice) break;
         computerChoice = getComputerChoice();
