@@ -49,9 +49,9 @@ function printRoundMessage(playerChoice, computerChoice, roundOutcome, playerSco
         outcomeMessage = 'You lose this round!';
     }
     roundMessage = `Round ${round}
-    You played ${CHOICES[playerChoice]} and the computer played ${CHOICES[computerChoice]}.
-    ${outcomeMessage}
-    The current score is Player ${playerScore} Computer ${computerScore}.`;
+                    You played ${CHOICES[playerChoice]} and the computer played ${CHOICES[computerChoice]}.
+                    ${outcomeMessage}
+                    The current score is Player ${playerScore} Computer ${computerScore}.`;
     console.log(roundMessage);
  }
 
@@ -74,20 +74,19 @@ function getPlayerChoice() {
 function updateScore (roundOutcome, playerScore, computerScore) {
     if (roundOutcome === ROUND_OUTCOMES.WIN) {
         playerScore++;
-    } else if (roundOutcome === ROUND_OUTCOMES.LOSE) {
+    }
+    if (roundOutcome === ROUND_OUTCOMES.LOSE) {
         computerScore++;
     }
     return [playerScore, computerScore];
 }
 
 function printFinalMessage(playerScore, computerScore) {
-    let finalMessage;
+    let finalMessage = 'It is a tie. Lame...';
     if (playerScore > computerScore) {
         finalMessage = 'Congratulations! You beat the computer!';    
     } else if (playerScore < computerScore) {
         finalMessage = 'How disappointing! The computer beat you...';
-    } else if (playerScore === computerScore) {
-        finalMessage = 'It is a tie. Lame...';
     }
     console.log(finalMessage);
 }
