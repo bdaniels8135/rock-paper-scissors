@@ -1,6 +1,7 @@
 * {
     border: 1px solid red;
-    padding: 5px;
+    padding: 8px;
+    margin: 0;
 }
 
 .container {
@@ -9,4 +10,13 @@
 
 .container.vertical {
     flex-direction: column;
+}
+ .container.center {
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+ }
+
+.text {
+    text-align: center;
 }
