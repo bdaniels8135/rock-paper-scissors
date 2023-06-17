@@ -19,25 +19,13 @@ function getComputerChoice() {
 function getRoundOutcome(playerChoice, computerChoice) {
     if (playerChoice === computerChoice) {
         return ROUND_OUTCOMES.TIE;
-    } else if (playerChoice ===  CHOICES.ROCK){
-        if (computerChoice === CHOICES.SCISSORS) {
-            return ROUND_OUTCOMES.WIN;
-        } else {
-            return ROUND_OUTCOMES.LOSE;
-        }
-    } else if (playerChoice === CHOICES.SCISSORS) {
-        if (computerChoice ===  CHOICES.ROCK) {
-            return ROUND_OUTCOMES.LOSE;
-        } else {
-            return ROUND_OUTCOMES.WIN;
-        }
-    } else {
-        if (computerChoice ===  CHOICES.ROCK) {
-            return ROUND_OUTCOMES.WIN;
-        } else {
-            return ROUND_OUTCOMES.LOSE;
-        }
-    }
+    } else if (
+        playerChoice ===  CHOICES.ROCK && computerChoice === CHOICES.SCISSORS ||
+        playerChoice === CHOICES.PAPER  && computerChoice ===  CHOICES.ROCK ||
+        playerChoice === CHOICES.SCISSORS && computerChoice === CHOICES.PAPER
+        ) {
+        return ROUND_OUTCOMES.WIN;
+    } else return ROUND_OUTCOMES.LOSE;  
 }
 
 function printRoundMessage(playerChoice, computerChoice, roundOutcome, playerScore, computerScore, round) {
@@ -48,10 +36,13 @@ function printRoundMessage(playerChoice, computerChoice, roundOutcome, playerSco
     if (roundOutcome === ROUND_OUTCOMES.LOSE) {
         outcomeMessage = 'You lose this round!';
     }
-    roundMessage = `Round ${round}
-                    You played ${CHOICES[playerChoice]} and the computer played ${CHOICES[computerChoice]}.
-                    ${outcomeMessage}
-                    The current score is Player ${playerScore} Computer ${computerScore}.`;
+    
+    roundMessage = 
+    `Round ${round}
+    You played ${CHOICES[playerChoice]} and the computer played ${CHOICES[computerChoice]}.
+    ${outcomeMessage}
+    The current score is Player ${playerScore} Computer ${computerScore}.`;
+    
     console.log(roundMessage);
  }
 
