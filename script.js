@@ -40,7 +40,7 @@ function getRoundOutcome(playerChoice, computerChoice) {
     }
 }
 
-function getRoundMessage(playerChoice, computerChoice, roundOutcome, playerScore, computerScore, round) {
+function printRoundMessage(playerChoice, computerChoice, roundOutcome, playerScore, computerScore, round) {
     let outcomeMessage = 'This round is a tie!';
     if (roundOutcome === ROUND_OUTCOMES.WIN) {
         outcomeMessage = 'You win this round!';
@@ -49,10 +49,10 @@ function getRoundMessage(playerChoice, computerChoice, roundOutcome, playerScore
         outcomeMessage = 'You lose this round!';
     }
     roundMessage = `Round ${round}
-    You played ${CHOICES[playerChoice]}. The computer played ${CHOICES[computerChoice]}.
+    You played ${CHOICES[playerChoice]} and the computer played ${CHOICES[computerChoice]}.
     ${outcomeMessage}
     The current score is Player ${playerScore} Computer ${computerScore}.`;
-    return roundMessage;
+    console.log(roundMessage);
  }
 
 function getPlayerChoice() {
@@ -80,14 +80,16 @@ function updateScore (roundOutcome, playerScore, computerScore) {
     return [playerScore, computerScore]
 }
 
-function getFinalMessage(playerScore, computerScore) {
+function printFinalMessage(playerScore, computerScore) {
+    let finalMessage;
     if (playerScore > computerScore) {
-        return 'Congratulations! You beat the computer!';    
+        finalMessage = 'Congratulations! You beat the computer!';    
     } else if (playerScore < computerScore) {
-        return 'How disappointing! The computer beat you...';
+        finalMessage = 'How disappointing! The computer beat you...';
     } else if (playerScore === computerScore) {
-        return 'It is a tie. Lame...';
+        finalMessage = 'It is a tie. Lame...';
     }
+    console.log(finalMessage);
 }
 
 function game() {
@@ -95,7 +97,6 @@ function game() {
     let computerScore = 0;
     let playerChoice;
     let computerChoice;
-    let roundMessage;
     let roundOutcome;
     for (let round = 1; round <= MAX_ROUNDS; round++) {
         playerChoice = getPlayerChoice();
@@ -103,10 +104,8 @@ function game() {
         computerChoice = getComputerChoice();
         roundOutcome = getRoundOutcome(playerChoice, computerChoice);    
         [playerScore, computerScore] = updateScore(roundOutcome, playerScore, computerScore);
-        roundMessage = getRoundMessage(playerChoice, computerChoice, roundOutcome, playerScore, computerScore, round);
-        console.log(roundMessage);
+        printRoundMessage(playerChoice, computerChoice, roundOutcome, playerScore, computerScore, round);
     }
     if (!playerChoice) return;
-    const finalMessage = getFinalMessage(playerScore, computerScore);
-    console.log(finalMessage);
+    printFinalMessage(playerScore, computerScore);
 }
