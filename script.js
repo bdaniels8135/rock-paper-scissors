@@ -69,6 +69,25 @@ function getPlayerChoice() {
     }
 }
 
+function updateScore (roundOutcome, playerScore, computerScore) {
+    if (roundOutcome === ROUND_OUTCOMES.WIN) {
+        playerScore++;
+    } else if (roundOutcome === ROUND_OUTCOMES.LOSE) {
+        computerScore++;
+    }
+    return [playerScore, computerScore]
+}
+
+function getFinalMessage(playerScore, computerScore) {
+    if (playerScore > computerScore) {
+        return 'Congratulations! You beat the computer!';    
+    } else if (playerScore < computerScore) {
+        return 'How disappointing! The computer beat you...';
+    } else if (playerScore === computerScore) {
+        return 'Wow! It is a tie.';
+    }
+}
+
 function game() {
     let playerScore = 0;
     let computerScore = 0;
@@ -78,27 +97,14 @@ function game() {
     let roundOutcome;
     for (let round = 1; round <= 5; round++) {
         playerChoice = getPlayerChoice();
-        if (!playerChoice) {
-            break;
-        }        
+        if (!playerChoice) break;
         computerChoice = getComputerChoice();
         roundOutcome = playRound(playerChoice, computerChoice);    
-        if (roundOutcome === ROUND_OUTCOMES.WIN) {
-            playerScore++;
-        } else if (roundOutcome === ROUND_OUTCOMES.LOSE) {
-            computerScore++;
-        }
+        [playerScore, computerScore] = updateScore(roundOutcome, playerScore, computerScore);
         roundMessage = getRoundMessage(playerChoice, computerChoice, roundOutcome, playerScore, computerScore, round);
         console.log(roundMessage);
     }
-    if (!playerChoice) {
-        return;
-    }
-    if (playerScore > computerScore) {
-        console.log('Congratulations! You beat the computer!');    
-    } else if (playerScore < computerScore) {
-        console.log('How disappointing! The computer beat you...');
-    } else if (playerScore === computerScore) {
-        console.log('Wow! It is a tie.');
-    }
+    if (!playerChoice) return;
+    const finalMessage = getFinalMessage(playerScore, computerScore);
+    console.log(finalMessage);
 }
