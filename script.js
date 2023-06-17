@@ -1,64 +1,100 @@
-const CHOICES = ['ROCK', 'PAPER', 'SCISSORS']
+const MAX_ROUNDS = 5;
 
+const CHOICES = Object.freeze({
+    ROCK: 'ROCK',
+    PAPER: 'PAPER',
+    SCISSORS: 'SCISSORS'
+})
+
+const ROUND_OUTCOMES = Object.freeze({
+    TIE: 'tie',
+    WIN: 'win',
+    LOSE: 'lose'
+})
 
 function getComputerChoice() {
-    return CHOICES[Math.floor(Math.random()*CHOICES.length)]
+    return CHOICES[Object.keys(CHOICES)[Math.floor(Math.random()*Object.keys(CHOICES).length)]];
 }
 
-function playRound(playerSelection, computerSelection) {
-    if (playerSelection === computerSelection) {
-        return 'It is a tie!';
-    } else if (playerSelection ===  'ROCK'){
-        if (computerSelection === 'SCISSORS') {
-            return 'You win! ROCK crushes SCISSORS.';
-        } else {
-            return 'You lose! PAPER covers ROCK.';
-        }
-    } else if (playerSelection === 'SCISSORS') {
-        if (computerSelection ===  'ROCK') {
-            return 'You lose! ROCK crushes SCISSORS.';
-        } else {
-            return 'You win! SCISSORS cut PAPER.';
-        }
-    } else {
-        if (computerSelection ===  'ROCK') {
-            return 'You win! PAPER covers ROCK.';
-        } else {
-            return 'You lose! SCISSORS cut PAPER.';
-        }
+function getRoundOutcome(playerChoice, computerChoice) {
+    if (playerChoice === computerChoice) {
+        return ROUND_OUTCOMES.TIE;
+    } else if (
+        playerChoice ===  CHOICES.ROCK && computerChoice === CHOICES.SCISSORS ||
+        playerChoice === CHOICES.PAPER  && computerChoice ===  CHOICES.ROCK ||
+        playerChoice === CHOICES.SCISSORS && computerChoice === CHOICES.PAPER
+        ) {
+        return ROUND_OUTCOMES.WIN;
+    } else return ROUND_OUTCOMES.LOSE;  
+}
+
+function printRoundMessage(playerChoice, computerChoice, roundOutcome, playerScore, computerScore, round) {
+    let outcomeMessage = 'This round is a tie!';
+    if (roundOutcome === ROUND_OUTCOMES.WIN) {
+        outcomeMessage = 'You win this round!';
     }
+    if (roundOutcome === ROUND_OUTCOMES.LOSE) {
+        outcomeMessage = 'You lose this round!';
+    }
+    
+    roundMessage = 
+    `Round ${round}
+    You played ${CHOICES[playerChoice]} and the computer played ${CHOICES[computerChoice]}.
+    ${outcomeMessage}
+    The current score is Player ${playerScore} Computer ${computerScore}.`;
+    
+    console.log(roundMessage);
+ }
+
+function getPlayerChoice() {
+    let playerInput;
+    while (true) {
+        playerInput = prompt('Type your selection: ROCK, PAPER, or SCISSORS.');
+        if (playerInput === null) {
+            console.log('Quitter!');
+            return;
+        }
+        if (!CHOICES[playerInput.toUpperCase()]) {
+            alert('Please enter a valid choice to continue playing or click cancel to quit.');
+            continue;
+        }
+        return CHOICES[playerInput.toUpperCase()];
+    }
+}
+
+function updateScore (roundOutcome, playerScore, computerScore) {
+    if (roundOutcome === ROUND_OUTCOMES.WIN) {
+        playerScore++;
+    }
+    if (roundOutcome === ROUND_OUTCOMES.LOSE) {
+        computerScore++;
+    }
+    return [playerScore, computerScore];
+}
+
+function printFinalMessage(playerScore, computerScore) {
+    let finalMessage = 'It is a tie. Lame...';
+    if (playerScore > computerScore) {
+        finalMessage = 'Congratulations! You beat the computer!';    
+    } else if (playerScore < computerScore) {
+        finalMessage = 'How disappointing! The computer beat you...';
+    }
+    console.log(finalMessage);
 }
 
 function game() {
-    let round = 0;
     let playerScore = 0;
     let computerScore = 0;
-    let playerSelection = null;
-    let computerSelection = null;
-    let message = null;
-    while (round < 5) {
-        playerSelection = prompt('Type your selection: ROCK, PAPER, or SCISSORS.').toUpperCase();
-        if (CHOICES.includes(playerSelection)) {
-            computerSelection = getComputerChoice();
-            message = playRound(playerSelection, computerSelection);
-            if (message.includes('win')) {
-                playerScore++;
-            } else if (message.includes('lose')) {
-                computerScore++;
-            }
-            round++;
-            console.log(`You played ${playerSelection}. The computer played ${computerSelection}.`);
-            console.log(message);
-            console.log(`Score: Player ${playerScore} Computer ${computerScore}`);
-        } else {
-            alert('Please enter a valid choice to continue playing.')
-        }
+    let playerChoice;
+    let computerChoice;
+    let roundOutcome;
+    for (let round = 1; round <= MAX_ROUNDS; round++) {
+        playerChoice = getPlayerChoice();
+        if (!playerChoice) return;
+        computerChoice = getComputerChoice();
+        roundOutcome = getRoundOutcome(playerChoice, computerChoice);    
+        [playerScore, computerScore] = updateScore(roundOutcome, playerScore, computerScore);
+        printRoundMessage(playerChoice, computerChoice, roundOutcome, playerScore, computerScore, round);
     }
-    if (playerScore > computerScore) {
-        console.log('Congratulations! You beat the computer!')    
-    } else if (playerScore < computerScore) {
-        console.log('How disappointing! The computer beat you...')
-    } else {
-        console.log('Wow! It is a tie.')
-    }
+    printFinalMessage(playerScore, computerScore);
 }
