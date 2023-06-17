@@ -38,7 +38,7 @@ function playRound(playerChoice, computerChoice) {
     }
 }
 
-function getRoundMessage(playerChoice, computerChoice, roundOutcome, playerScore, computerScore) {
+function getRoundMessage(playerChoice, computerChoice, roundOutcome, playerScore, computerScore, round) {
     let outcomeMessage = 'This round is a tie!';
     if (roundOutcome === ROUND_OUTCOMES.WIN) {
         outcomeMessage = 'You win this round!';
@@ -46,11 +46,11 @@ function getRoundMessage(playerChoice, computerChoice, roundOutcome, playerScore
     if (roundOutcome === ROUND_OUTCOMES.LOSE) {
         outcomeMessage = 'You lose this round!';
     }
-    roundMessage = 
-    `You played ${CHOICES[playerChoice]}. The computer played ${CHOICES[computerChoice]}.
+    roundMessage = `Round ${round}
+    You played ${CHOICES[playerChoice]}. The computer played ${CHOICES[computerChoice]}.
     ${outcomeMessage}
     The current score is Player ${playerScore} Computer ${computerScore}.`;
-    return roundMessage
+    return roundMessage;
  }
 
 function getPlayerChoice() {
@@ -59,7 +59,7 @@ function getPlayerChoice() {
         playerInput = prompt('Type your selection: ROCK, PAPER, or SCISSORS.');
         if (playerInput === null) {
             console.log('Quitter!');
-            return
+            return;
         }
         if (!CHOICES[playerInput.toUpperCase()]) {
             alert('Please enter a valid choice to continue playing or click cancel to quit.');
@@ -70,14 +70,13 @@ function getPlayerChoice() {
 }
 
 function game() {
-    let round = 0;
     let playerScore = 0;
     let computerScore = 0;
     let playerChoice;
     let computerChoice;
     let roundMessage;
     let roundOutcome;
-    while (round < 5) {
+    for (let round = 1; round <= 5; round++) {
         playerChoice = getPlayerChoice();
         if (!playerChoice) {
             break;
@@ -89,11 +88,10 @@ function game() {
         } else if (roundOutcome === ROUND_OUTCOMES.LOSE) {
             computerScore++;
         }
-        round++;
-        roundMessage = getRoundMessage(playerChoice, computerChoice, roundOutcome, playerScore, computerScore);
+        roundMessage = getRoundMessage(playerChoice, computerChoice, roundOutcome, playerScore, computerScore, round);
         console.log(roundMessage);
     }
-    if (round !== 5) {
+    if (!playerChoice) {
         return;
     }
     if (playerScore > computerScore) {
