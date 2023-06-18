@@ -4,7 +4,9 @@
 }
 
 body{
+    margin: 8px;
     padding: 0px 8px;
+    font-family: sans-serif;
 }
 
 img {
@@ -39,7 +41,7 @@ img {
 
 header {
     padding: 8px;
-    font-size: 32px;
+    font-size: 28px;
     font-weight: 800;
 }
 
@@ -84,9 +86,17 @@ header {
     font-size: 20px;
 }
 
-.outcome-message {
+/* .outcome-message {
     border: 2px solid gray;
     min-height: 3lh;
     aspect-ratio: 5;
     margin: 8px;
+} */
+
+#player-moves-container {
+    padding: 0px 8px;
+}
+
+footer{
+    margin-top: 20px;
 }
