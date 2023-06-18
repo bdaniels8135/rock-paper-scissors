@@ -16,11 +16,10 @@
     </header>
 
     <main class="container vertical" id="game-container">
-        <div class="container vertical center" id="instructions-container">
-            <div class="text header" id="instructions-header">Instructions</div>
+        <div class="container vertical center instructions" id="instructions-container">
             <div class="text" id="instructions">
                 Play each round by picking rock, paper, or scissors below. 
-                First to 5 wins is the champ.
+                First to win 5 rounds is the champion.
             </div>
         </div>
         
@@ -51,35 +50,27 @@
                 </div>                
             </div>
             <div class="container center" id="round-outcome-display">
-                <div class="text label" id="round-outcome-win">You win!</div>
-                <div class="text label" id="round-outcome-tie">It's a tie.</div>
-                <div class="text label" id="round-outcome-lose">You lose...</div>
+                <div class="text round-outcome" id="round-outcome-win">You win!</div>
+                <div class="text round-outcome" id="round-outcome-tie">It's a tie.</div>
+                <div class="text round-outcome" id="round-outcome-lose">You lose...</div>
             </div>
         </div>
-                    
-        
 
-        <div class="container vertical" id="scoreboard-container">
-            <div class="container center" id="round-info-container">
+        <div class="container vertical scoreboard" id="scoreboard-container">
+            <div class="container align-center center" id="round-info-container">
                 <div class="text label" id="round-label">Round</div>
-                <div class="container" id="round-number-container">
-                    <div class="text" id="round-number">1</div>
-                </div>    
+                <div class="text" id="round-number">1</div>
             </div>
-            <div class="container center" id="score-container">
+            <div class="container center align-center" id="score-container">
                 <div class="text label" id="player-score-label">Player</div>
-                <div class="container" id="player-score-container">
-                    <div class="text" id="player-score">0</div>
-                </div>
+                <div class="text" id="player-score">0</div>
                 <div class="text label" id="computer-score-label">Computer</div>
-                <div class="container" id="computer-score-container">
-                    <div class="text" id="computer-score">0</div>
-                </div>
+                <div class="text" id="computer-score">0</div>
             </div>
         </div>
         
-        <div class="container  align-center vertical center" id="game-outcome-container">
-            <div class="text" id="game-outcome-message">(Placeholder for outcome message)</div>
+        <div class="container align-center vertical center" id="game-outcome-container">
+            <div class="text outcome-message" id="game-outcome-message"></div>
             <button class="button" id="button-play-again">Play Again/Forfeit Game</button>
         </div>
     </main>
