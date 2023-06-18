@@ -83,18 +83,20 @@ function printFinalMessage(playerScore, computerScore) {
 }
 
 function game() {
+    let round = 1;
     let playerScore = 0;
     let computerScore = 0;
     let playerMove;
     let computerMove;
     let roundOutcome;
-    for (let round = 1; round <= MAX_ROUNDS; round++) {
+    while (playerScore < 5 && computerScore < 5) {
         playerMove = getPlayerMove();
         if (!playerMove) return;
         computerMove = getComputerMove();
         roundOutcome = getRoundOutcome(playerMove, computerMove);    
         [playerScore, computerScore] = updateScore(roundOutcome, playerScore, computerScore);
         printRoundMessage(playerMove, computerMove, roundOutcome, playerScore, computerScore, round);
+        round++;
     }
     printFinalMessage(playerScore, computerScore);
 }
