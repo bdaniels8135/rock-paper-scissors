@@ -17,9 +17,13 @@ const ROUND_OUTCOMES = Object.freeze({
 
 // UI Functions
 
-const rockButton = document.querySelector('#button-rock');
-const paperButton = document.querySelector('#button-paper');
-const scissorsButton = document.querySelector('#button-scissors');
+const buttons = document.querySelectorAll('button')
+buttons.forEach(button => {
+    button.addEventListener('click', () => {
+        resolveClick(button)
+    })
+})
+
 const playerMoveDisplay = document.querySelector('#player-move-display');
 const computerMoveDisplay = document.querySelector('#computer-move-display');
 const roundOutcomeDisplay = document.querySelector('#round-outcome-display');
@@ -29,7 +33,9 @@ const computerScore = document.querySelector('#computer-score');
 const gameOutcomeMessage = document.querySelector('#game-outcome-message');
 const gameResetButton = document.querySelector('#game-reset-button');
 
-
+function resolveClick(button) {
+    return console.log(button.id)
+}
 
 
 // function printRoundMessage(playerMove, computerMove, roundOutcome, playerScore, computerScore, round) {
