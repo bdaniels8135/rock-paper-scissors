@@ -73,7 +73,7 @@ function updateScore (roundOutcome, playerScore, computerScore) {
 }
 
 function printFinalMessage(playerScore, computerScore) {
-    let finalMessage = 'It is a tie. Lame...';
+    let finalMessage;
     if (playerScore > computerScore) {
         finalMessage = 'Congratulations! You beat the computer!';    
     } else if (playerScore < computerScore) {
