@@ -100,3 +100,7 @@ header {
 footer{
     margin-top: 20px;
 }
+
+#player-score {
+    margin-right: 40px;
+}
