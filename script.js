@@ -1,4 +1,4 @@
-const MAX_ROUNDS = 5;
+const WINNING_ROUNDS = 5;
 
 const MOVES = Object.freeze({
     ROCK: 'ROCK',
@@ -26,6 +26,16 @@ function getRoundOutcome(playerMove, computerMove) {
         ) {
         return ROUND_OUTCOMES.WIN;
     } else return ROUND_OUTCOMES.LOSE;  
+}
+
+function updateScore (roundOutcome, playerScore, computerScore) {
+    if (roundOutcome === ROUND_OUTCOMES.WIN) {
+        playerScore++;
+    }
+    if (roundOutcome === ROUND_OUTCOMES.LOSE) {
+        computerScore++;
+    }
+    return [playerScore, computerScore];
 }
 
 function printRoundMessage(playerMove, computerMove, roundOutcome, playerScore, computerScore, round) {
@@ -62,16 +72,6 @@ function getPlayerMove() {
     }
 }
 
-function updateScore (roundOutcome, playerScore, computerScore) {
-    if (roundOutcome === ROUND_OUTCOMES.WIN) {
-        playerScore++;
-    }
-    if (roundOutcome === ROUND_OUTCOMES.LOSE) {
-        computerScore++;
-    }
-    return [playerScore, computerScore];
-}
-
 function printFinalMessage(playerScore, computerScore) {
     let finalMessage;
     if (playerScore > computerScore) {
@@ -89,7 +89,7 @@ function game() {
     let playerMove;
     let computerMove;
     let roundOutcome;
-    while (playerScore < 5 && computerScore < 5) {
+    while (playerScore < WINNING_ROUNDS && computerScore < WINNING_ROUNDS) {
         playerMove = getPlayerMove();
         if (!playerMove) return;
         computerMove = getComputerMove();
