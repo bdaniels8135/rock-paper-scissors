@@ -1,3 +1,5 @@
+// Global Constants Declaration
+
 const WINNING_ROUNDS = 5;
 
 const MOVES = Object.freeze({
@@ -12,31 +14,8 @@ const ROUND_OUTCOMES = Object.freeze({
     LOSE: 'lose'
 })
 
-function getComputerMove() {
-    return MOVES[Object.keys(MOVES)[Math.floor(Math.random()*Object.keys(MOVES).length)]];
-}
 
-function getRoundOutcome(playerMove, computerMove) {
-    if (playerMove === computerMove) {
-        return ROUND_OUTCOMES.TIE;
-    } else if (
-        playerMove ===  MOVES.ROCK && computerMove === MOVES.SCISSORS ||
-        playerMove === MOVES.PAPER  && computerMove ===  MOVES.ROCK ||
-        playerMove === MOVES.SCISSORS && computerMove === MOVES.PAPER
-        ) {
-        return ROUND_OUTCOMES.WIN;
-    } else return ROUND_OUTCOMES.LOSE;  
-}
-
-function updateScore (roundOutcome, playerScore, computerScore) {
-    if (roundOutcome === ROUND_OUTCOMES.WIN) {
-        playerScore++;
-    }
-    if (roundOutcome === ROUND_OUTCOMES.LOSE) {
-        computerScore++;
-    }
-    return [playerScore, computerScore];
-}
+// UI Functions
 
 function printRoundMessage(playerMove, computerMove, roundOutcome, playerScore, computerScore, round) {
     let outcomeMessage = 'This round is a tie!';
@@ -81,6 +60,38 @@ function printFinalMessage(playerScore, computerScore) {
     }
     console.log(finalMessage);
 }
+
+
+// Game Logic Functions
+
+function getComputerMove() {
+    return MOVES[Object.keys(MOVES)[Math.floor(Math.random()*Object.keys(MOVES).length)]];
+}
+
+function getRoundOutcome(playerMove, computerMove) {
+    if (playerMove === computerMove) {
+        return ROUND_OUTCOMES.TIE;
+    } else if (
+        playerMove ===  MOVES.ROCK && computerMove === MOVES.SCISSORS ||
+        playerMove === MOVES.PAPER  && computerMove ===  MOVES.ROCK ||
+        playerMove === MOVES.SCISSORS && computerMove === MOVES.PAPER
+        ) {
+        return ROUND_OUTCOMES.WIN;
+    } else return ROUND_OUTCOMES.LOSE;  
+}
+
+function updateScore (roundOutcome, playerScore, computerScore) {
+    if (roundOutcome === ROUND_OUTCOMES.WIN) {
+        playerScore++;
+    }
+    if (roundOutcome === ROUND_OUTCOMES.LOSE) {
+        computerScore++;
+    }
+    return [playerScore, computerScore];
+}
+
+
+// Main Game Function
 
 function game() {
     let round = 1;
