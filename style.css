@@ -7,6 +7,7 @@
 body{
     padding: 0px 8px;
 }
+
 img {
     max-width: 100%;
     height: auto;
@@ -22,12 +23,20 @@ img {
 
 .container.center {
     justify-content: center;
-    align-items: center;
     gap: 8px;
 }
 
 .text {
     text-align: center;
+}
+
+.text.label {
+    font-size: 18px;
+    padding: 4px;
+}
+
+.container.align-center {
+    align-items: center;
 }
 
 header {
@@ -51,12 +60,19 @@ header {
     font-size: 18px;
     padding: 4px 8px;
     margin: 8px 0px;
+    border: 2px solid black;
+    border-radius: 4px;
+    background-color: white;
 }
 
-.round-choice {
-    flex: 0 1 200px;
-    aspect-ratio: 1;
+.round-move {
     padding: 8px;
     margin: 8px;
+    border: 2px solid black;
+    border-radius: 4px;
+    aspect-ratio: 1;
 }
 
+.stretch {
+    flex: 0 1 200px;
+}

@@ -10,7 +10,7 @@
 </head>
 <body>
     <header class="header">
-        <div class="text" id="game-title">
+        <div class="text header" id="game-title">
             Rock Paper Scissors
         </div>
     </header>
@@ -24,57 +24,63 @@
             </div>
         </div>
         
-        <div class="container center" id="player-choices">
-            <button class="button container vertical center" id="button-rock">
+        <div class="container center" id="player-moves-container">
+            <button class="button align-center container vertical center" id="button-rock">
                 <img src="/img/rock.png" alt="rock hand gesture icon" />
                 <div class="text">Rock</div>
             </button>
-            <button class="button container vertical center" id="button-paper">
+            <button class="button align-center container vertical center" id="button-paper">
                 <img src="/img/paper.png" alt="paper hand gesture icon" />
                 <div class="text">Paper</div>
             </button>
-            <button class="button container vertical center" id="button-scissors">
+            <button class="button align-center container vertical center" id="button-scissors">
                 <img src="/img/scissors.png" alt="scissors hand gesture icon" />
                 <div class="text">Scissors</div>
             </button>
         </div>
         
-        <div class="container center" id="game-flow-choices">
-            <button class="button" id="button-forfeit">Forfeit Game</button>
+        <div class="container center vertical" id="round-info-container">
+            <div class="container center" id="round-move-info-container">
+                <div class="container vertical stretch" id="player-move-info-container">
+                    <div class="container round-move" id="player-move-display"></div>
+                    <div class="text label" id="player-move-label">Player's Move</div>                  
+                </div>
+                <div class="container vertical stretch" id="computer-move-info-container">
+                    <div class="container round-move" id="computer-move-display"></div>
+                    <div class="text label" id="player-move-label">Computer's Move</div>
+                </div>                
+            </div>
+            <div class="container center" id="round-outcome-display">
+                <div class="text label" id="round-outcome-win">You win!</div>
+                <div class="text label" id="round-outcome-tie">It's a tie.</div>
+                <div class="text label" id="round-outcome-lose">You lose...</div>
+            </div>
         </div>
+                    
         
-        <div class="container center" id="round-choices">
-            <div class="container round-choice" id="player-choice"></div>
-            <div class="container round-choice" id="computer-choice"></div>
-        </div>
-        
-        <div class="container center" id="round-outcome-container">
-            <div class="container" id="round-outcome-win">You win!</div>
-            <div class="container" id="round-outcome-tie">It's a tie.</div>
-            <div class="container" id="round-outcome-lose">You lose...</div>
-        </div>
 
         <div class="container vertical" id="scoreboard-container">
             <div class="container center" id="round-info-container">
-                <div class="text" id="round-label">Round</div>
+                <div class="text label" id="round-label">Round</div>
                 <div class="container" id="round-number-container">
                     <div class="text" id="round-number">1</div>
                 </div>    
             </div>
             <div class="container center" id="score-container">
-                <div class="text" id="player-score-label">Player</div>
+                <div class="text label" id="player-score-label">Player</div>
                 <div class="container" id="player-score-container">
                     <div class="text" id="player-score">0</div>
                 </div>
-                <div class="text" id="computer-score-label">Computer</div>
+                <div class="text label" id="computer-score-label">Computer</div>
                 <div class="container" id="computer-score-container">
                     <div class="text" id="computer-score">0</div>
                 </div>
             </div>
         </div>
-        <div class="container vertical center" id="game-outcome-container">
+        
+        <div class="container  align-center vertical center" id="game-outcome-container">
             <div class="text" id="game-outcome-message">(Placeholder for outcome message)</div>
-            <button class="button" id="button-play-again">Play Again</button>
+            <button class="button" id="button-play-again">Play Again/Forfeit Game</button>
         </div>
     </main>
     
