@@ -27,16 +27,51 @@ buttons.forEach(button => {
 const playerMoveDisplay = document.querySelector('#player-move-display');
 const computerMoveDisplay = document.querySelector('#computer-move-display');
 const roundOutcomeDisplay = document.querySelector('#round-outcome-display');
-const roundNumber = document.querySelector('#round-number');
-const playerScore = document.querySelector('#player-score');
-const computerScore = document.querySelector('#computer-score');
-const gameOutcomeMessage = document.querySelector('#game-outcome-message');
+const roundNumberDisplay = document.querySelector('#round-number');
+const playerScoreText = document.querySelector('#player-score');
+const computerScoreText = document.querySelector('#computer-score');
+const gameOutcomeMessageDisplay = document.querySelector('#game-outcome-message');
 const gameResetButton = document.querySelector('#game-reset-button');
 
 function resolveClick(button) {
-    return console.log(button.id)
+    switch (button.id) {
+        case 'button-rock':
+            playRound(MOVES.ROCK);     
+        case 'button-paper':
+            playRound(MOVES.PAPER);
+        case 'button-scissors':
+            playRound(MOVES.SCISSORS);
+        case 'game-reset-button':
+            resetGame();
+    }
 }
 
+function updateMovesDisplays(playerMove, computerMove){
+    ...
+}
+
+function updateRoundOutcomeDisplay(roundOutcome) {
+    ...
+}
+
+let scoreboard = {
+    round: 0,
+    playerScore: 0,
+    computerScore: 0
+}
+
+function updateScoreBoard(roundOutcome) {
+    if (roundOutcome === ROUND_OUTCOMES.WIN) {
+        scoreboard[playerScore]++;
+        playerScoreText.textContent = `${scoreboard[playerScore]}`;
+    }
+    if (roundOutcome === ROUND_OUTCOMES.LOSE) {
+        scoreboard[computerScore]++;
+        computerScoreText.textContent = `${scoreboard[computerScore]}`;
+    }
+    scoreboard[round]++;
+    roundNumberDisplay.textContent = `${scoreboard[round]}`;
+}
 
 // function printRoundMessage(playerMove, computerMove, roundOutcome, playerScore, computerScore, round) {
 //     let outcomeMessage = 'This round is a tie!';
@@ -101,34 +136,19 @@ function getRoundOutcome(playerMove, computerMove) {
     } else return ROUND_OUTCOMES.LOSE;  
 }
 
-function updateScore (roundOutcome, playerScore, computerScore) {
-    if (roundOutcome === ROUND_OUTCOMES.WIN) {
-        playerScore++;
-    }
-    if (roundOutcome === ROUND_OUTCOMES.LOSE) {
-        computerScore++;
-    }
-    return [playerScore, computerScore];
+function checkGameOver() {
+    ...
 }
 
+function playRound(playerMove) {
+    let computerMove = getComputerMove();
+    updateMovesDisplays(playerMove, computerMove);
+    let roundOutcome = getRoundOutcome(playerMove, computerMove);
+    updateRoundOutcomeDisplay(roundOutcome);
+    updateScoreBoard(roundOutcome);
+    checkGameOver()
+}
 
-// Main Game Function
-
-function game() {
-    let round = 1;
-    let playerScore = 0;
-    let computerScore = 0;
-    let playerMove;
-    let computerMove;
-    let roundOutcome;
-    while (playerScore < WINNING_ROUNDS && computerScore < WINNING_ROUNDS) {
-        playerMove = getPlayerMove();
-        if (!playerMove) return;
-        computerMove = getComputerMove();
-        roundOutcome = getRoundOutcome(playerMove, computerMove);    
-        [playerScore, computerScore] = updateScore(roundOutcome, playerScore, computerScore);
-        printRoundMessage(playerMove, computerMove, roundOutcome, playerScore, computerScore, round);
-        round++;
-    }
-    printFinalMessage(playerScore, computerScore);
+function resetGame() {
+    ...
 }
