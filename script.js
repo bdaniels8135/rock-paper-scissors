@@ -38,22 +38,28 @@ ui.buttons.forEach(button => {
 function resolveClick(button) {
     switch (button.id) {
         case 'button-rock':
-            playRound(MOVES.ROCK);     
+            playRound(MOVES.ROCK);  
+            break;
+
         case 'button-paper':
             playRound(MOVES.PAPER);
+            break; 
+
         case 'button-scissors':
             playRound(MOVES.SCISSORS);
+            break;
+            
         case 'game-reset-button':
             resetGame();
     }
 }
 
 function updateMovesDisplays(playerMove, computerMove){
-    ...
+    console.log(`Player Move: ${playerMove} Computer Move: ${computerMove}`);
 }
 
 function updateRoundOutcomeDisplay(roundOutcome) {
-    ...
+    console.log(`Round Outcome: ${roundOutcome}`)
 }
 
 let scoreboard = {
@@ -64,15 +70,14 @@ let scoreboard = {
 
 function updateScoreBoard(roundOutcome) {
     if (roundOutcome === ROUND_OUTCOMES.WIN) {
-        scoreboard[playerScore]++;
-        ui.playerScore.textContent = `${scoreboard[playerScore]}`;
+        scoreboard.playerScore++;
+        ui.playerScore.textContent = `${scoreboard.playerScore}`;
+    } else if (roundOutcome === ROUND_OUTCOMES.LOSE) {
+        scoreboard.computerScore++;
+        ui.computerScore.textContent = `${scoreboard.computerScore}`;
     }
-    if (roundOutcome === ROUND_OUTCOMES.LOSE) {
-        scoreboard[computerScore]++;
-        ui.computerScore.textContent = `${scoreboard[computerScore]}`;
-    }
-    scoreboard[round]++;
-    ui.roundNumber.textContent = `${scoreboard[round]}`;
+    scoreboard.round++;
+    ui.roundNumber.textContent = `${scoreboard.round}`;
 }
 
 // function printRoundMessage(playerMove, computerMove, roundOutcome, playerScore, computerScore, round) {
@@ -139,7 +144,7 @@ function getRoundOutcome(playerMove, computerMove) {
 }
 
 function checkGameOver() {
-    ...
+    console.log('check if game is over...')
 }
 
 function playRound(playerMove) {
@@ -152,5 +157,5 @@ function playRound(playerMove) {
 }
 
 function resetGame() {
-    ...
+    console.log('reset game!')
 }
