@@ -55,7 +55,8 @@ function resolveClick(button) {
 }
 
 function updateMovesDisplays(playerMove, computerMove){
-    console.log(`Player Move: ${playerMove} Computer Move: ${computerMove}`);
+    ui.playerMove.innerHTML = `<img src='./img/${playerMove.toLowerCase()}.png' alt='${playerMove.toLowerCase()} hand gesture icon' />`;
+    ui.computerMove.innerHTML = `<img src='./img/${computerMove.toLowerCase()}.png' alt='${computerMove.toLowerCase()} hand gesture icon' />`;
 }
 
 function updateRoundOutcomeDisplay(roundOutcome) {
