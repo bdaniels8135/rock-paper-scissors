@@ -48,7 +48,7 @@ function resolveClick(button) {
         case 'button-scissors':
             playRound(MOVES.SCISSORS);
             break;
-            
+
         case 'game-reset-button':
             resetGame();
     }
@@ -157,5 +157,5 @@ function playRound(playerMove) {
 }
 
 function resetGame() {
-    console.log('reset game!')
+    location.reload();
 }
