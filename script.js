@@ -17,21 +17,23 @@ const ROUND_OUTCOMES = Object.freeze({
 
 // UI Functions
 
-const buttons = document.querySelectorAll('button')
-buttons.forEach(button => {
+const ui = Object.freeze({
+    buttons: document.querySelectorAll('button'),
+    playerMove: document.querySelector('#player-move-display'),
+    computerMove: document.querySelector('#computer-move-display'),
+    roundOutcomeDisplay: document.querySelector('#round-outcome-display'),
+    roundNumber: document.querySelector('#round-number'),
+    playerScore: document.querySelector('#player-score'),
+    computerScore: document.querySelector('#computer-score'),
+    gameOutcomeMessage: document.querySelector('#game-outcome-message'),
+    gameResetButton: document.querySelector('#game-reset-button')
+})
+
+ui.buttons.forEach(button => {
     button.addEventListener('click', () => {
         resolveClick(button)
     })
 })
-
-const playerMoveDisplay = document.querySelector('#player-move-display');
-const computerMoveDisplay = document.querySelector('#computer-move-display');
-const roundOutcomeDisplay = document.querySelector('#round-outcome-display');
-const roundNumberDisplay = document.querySelector('#round-number');
-const playerScoreText = document.querySelector('#player-score');
-const computerScoreText = document.querySelector('#computer-score');
-const gameOutcomeMessageDisplay = document.querySelector('#game-outcome-message');
-const gameResetButton = document.querySelector('#game-reset-button');
 
 function resolveClick(button) {
     switch (button.id) {
@@ -63,14 +65,14 @@ let scoreboard = {
 function updateScoreBoard(roundOutcome) {
     if (roundOutcome === ROUND_OUTCOMES.WIN) {
         scoreboard[playerScore]++;
-        playerScoreText.textContent = `${scoreboard[playerScore]}`;
+        ui.playerScore.textContent = `${scoreboard[playerScore]}`;
     }
     if (roundOutcome === ROUND_OUTCOMES.LOSE) {
         scoreboard[computerScore]++;
-        computerScoreText.textContent = `${scoreboard[computerScore]}`;
+        ui.computerScore.textContent = `${scoreboard[computerScore]}`;
     }
     scoreboard[round]++;
-    roundNumberDisplay.textContent = `${scoreboard[round]}`;
+    ui.roundNumber.textContent = `${scoreboard[round]}`;
 }
 
 // function printRoundMessage(playerMove, computerMove, roundOutcome, playerScore, computerScore, round) {
