@@ -85,12 +85,11 @@ header {
     font-size: 20px;
 }
 
-/* .outcome-message {
-    border: 2px solid gray;
-    min-height: 3lh;
-    aspect-ratio: 5;
+.outcome-message {
+    font-size: 28px;
+    color: blue;
     margin: 8px;
-} */
+}
 
 #player-moves-container {
     padding: 0px 8px;
