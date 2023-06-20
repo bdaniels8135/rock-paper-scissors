@@ -60,7 +60,14 @@ function updateMovesDisplays(playerMove, computerMove){
 }
 
 function updateRoundOutcomeDisplay(roundOutcome) {
-    console.log(`Round Outcome: ${roundOutcome}`)
+    ui.roundOutcomeDisplay.childNodes.forEach((node) => {
+        if (node.id) {
+            node.classList.remove('active');
+            if (node.id.includes(roundOutcome)) {
+                node.classList.add('active');
+            }
+        }
+    })
 }
 
 let scoreboard = {

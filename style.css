@@ -103,3 +103,7 @@ footer{
 #player-score {
     margin-right: 40px;
 }
+
+.active {
+    color: red;
+}
