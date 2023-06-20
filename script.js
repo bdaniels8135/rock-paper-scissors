@@ -151,11 +151,22 @@ function getRoundOutcome(playerMove, computerMove) {
     } else return ROUND_OUTCOMES.LOSE;  
 }
 
+let gameOver = false;
+
 function checkGameOver() {
-    console.log('check if game is over...')
+    if (scoreboard.playerScore === 5 || scoreboard.computerScore === 5) {
+        gameOver = true;
+        ui.gameResetButton.textContent = 'Play Again';
+        if (scoreboard.playerScore > scoreboard.computerScore) {
+            ui.gameOutcomeMessage.textContent = 'Congratulations! You beat the computer!';    
+        } else {
+            ui.gameOutcomeMessage.textContent = 'How disappointing! The computer beat you...';
+        } 
+    }
 }
 
 function playRound(playerMove) {
+    if (gameOver) return;
     let computerMove = getComputerMove();
     updateMovesDisplays(playerMove, computerMove);
     let roundOutcome = getRoundOutcome(playerMove, computerMove);
