@@ -31,7 +31,7 @@ const ui = Object.freeze({
 
 ui.buttons.forEach(button => {
     button.addEventListener('click', () => {
-        resolveClick(button)
+        resolveClick(button);
     })
 })
 
@@ -88,50 +88,6 @@ function updateScoreBoard(roundOutcome) {
     ui.roundNumber.textContent = `${scoreboard.round}`;
 }
 
-// function printRoundMessage(playerMove, computerMove, roundOutcome, playerScore, computerScore, round) {
-//     let outcomeMessage = 'This round is a tie!';
-//     if (roundOutcome === ROUND_OUTCOMES.WIN) {
-//         outcomeMessage = 'You win this round!';
-//     }
-//     if (roundOutcome === ROUND_OUTCOMES.LOSE) {
-//         outcomeMessage = 'You lose this round!';
-//     }
-    
-//     roundMessage = 
-//     `Round ${round}
-//     You played ${MOVES[playerMove]} and the computer played ${MOVES[computerMove]}.
-//     ${outcomeMessage}
-//     The current score is Player ${playerScore} Computer ${computerScore}.`;
-    
-//     console.log(roundMessage);
-// }
-
-// function getPlayerMove() {
-//     let playerInput;
-//     while (true) {
-//         playerInput = prompt('Type your selection: ROCK, PAPER, or SCISSORS.');
-//         if (playerInput === null) {
-//             console.log('Quitter!');
-//             return;
-//         }
-//         if (!MOVES[playerInput.toUpperCase()]) {
-//             alert('Please enter a valid choice to continue playing or click cancel to quit.');
-//             continue;
-//         }
-//         return MOVES[playerInput.toUpperCase()];
-//     }
-// }
-
-// function printFinalMessage(playerScore, computerScore) {
-//     let finalMessage;
-//     if (playerScore > computerScore) {
-//         finalMessage = 'Congratulations! You beat the computer!';    
-//     } else if (playerScore < computerScore) {
-//         finalMessage = 'How disappointing! The computer beat you...';
-//     }
-//     console.log(finalMessage);
-// }
-
 
 // Game Logic Functions
 
@@ -154,7 +110,7 @@ function getRoundOutcome(playerMove, computerMove) {
 let gameOver = false;
 
 function checkGameOver() {
-    if (scoreboard.playerScore === 5 || scoreboard.computerScore === 5) {
+    if (scoreboard.playerScore === WINNING_ROUNDS || scoreboard.computerScore === WINNING_ROUNDS) {
         gameOver = true;
         ui.gameResetButton.textContent = 'Play Again';
         if (scoreboard.playerScore > scoreboard.computerScore) {
@@ -172,7 +128,7 @@ function playRound(playerMove) {
     let roundOutcome = getRoundOutcome(playerMove, computerMove);
     updateRoundOutcomeDisplay(roundOutcome);
     updateScoreBoard(roundOutcome);
-    checkGameOver()
+    checkGameOver();
 }
 
 function resetGame() {
