@@ -88,6 +88,15 @@ function updateScoreBoard(roundOutcome) {
     ui.roundNumber.textContent = `${scoreboard.round}`;
 }
 
+function updateGameOverUI() {
+    ui.gameResetButton.textContent = 'Play Again';
+        if (scoreboard.playerScore > scoreboard.computerScore) {
+            ui.gameOutcomeMessage.textContent = 'Congratulations! You beat the computer!';    
+        } else {
+            ui.gameOutcomeMessage.textContent = 'How disappointing! The computer beat you...';
+        } 
+}
+
 
 // Game Logic Functions
 
@@ -112,12 +121,7 @@ let gameOver = false;
 function checkGameOver() {
     if (scoreboard.playerScore === WINNING_ROUNDS || scoreboard.computerScore === WINNING_ROUNDS) {
         gameOver = true;
-        ui.gameResetButton.textContent = 'Play Again';
-        if (scoreboard.playerScore > scoreboard.computerScore) {
-            ui.gameOutcomeMessage.textContent = 'Congratulations! You beat the computer!';    
-        } else {
-            ui.gameOutcomeMessage.textContent = 'How disappointing! The computer beat you...';
-        } 
+        updateGameOverUI()
     }
 }
 
