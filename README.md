@@ -1,3 +1,5 @@
+# Rock Paper Scissors
+
 This is my first JavaScript project for the odin project.
 
 It started as a pure browser console game and was quite horribly written code. Since then, it has been developed twice: once to improve the underlying code structure and a second time to add a UI.
